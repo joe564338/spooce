@@ -21,9 +21,12 @@ class Level:
             for obj2 in self.objects:
                 dist = math.sqrt(math.pow(obj2.posX - obj.posX, 2) + math.pow(obj2.posY - obj.posY, 2))
                 if dist != 0:
+                    velmag = math.sqrt(math.pow(obj.velX, 2) + math.pow(obj.velY, 2))
                     if dist < obj.radius + obj2.radius:
-                        obj.posX += obj.posX - obj2.posX
-                        obj.posY += obj.posY - obj2.posY
+                        obj.posX += obj2.radius/8* (obj.posX - obj2.posX)/dist
+                        obj.posY += obj2.radius/8 * (obj.posY - obj2.posY)/dist
+                        obj.velX = 0
+                        obj.velY = 0
                         collision = True
                     else:
                         if (obj2.id == "neutron star"):
