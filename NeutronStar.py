@@ -14,8 +14,10 @@ class NeutronStar(GameObject):
 
     def gravPull(self, obj):
         dist = self.getDist(obj)
-        mag = (self.mass/dist)/10
-        if dist < 200:
+        reductionFactor = 4
+        mag = (self.mass/dist)/reductionFactor
+        maxDist = 250
+        if dist < maxDist:
             accDeltaX = mag * (self.posX - obj.posX)/dist
             accDeltaY = mag * (self.posY - obj.posY)/dist
             obj.updateAccel(obj.accelX + accDeltaX, obj.accelY + accDeltaY)

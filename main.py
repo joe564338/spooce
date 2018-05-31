@@ -20,7 +20,9 @@ nsimg = pygame.image.load("neutronstarcircle.png")
 nsRect = nsimg.get_rect()
 player = Player(100, 100, ball, ballRect)
 neutronStar1 = NeutronStar(512, 380, nsimg, nsRect)
+neutronStar2 = NeutronStar(200, 700, nsimg, nsRect)
 level.addObj(neutronStar1)
+level.addObj(neutronStar2)
 level.addObj(player)
 player.imgRect.center = (player.posX, player.posY)
 for obj in level.objects:
@@ -34,27 +36,33 @@ while 1:
     keys = pygame.key.get_pressed()
     if keys[pygame.K_a]:
         player.goLeft()
-        print(player)
+
 
     elif keys[pygame.K_d]:
         player.goRight()
-        print(player)
+
 
     else:
         player.updateAccel(0, player.accelY)
 
     if keys[pygame.K_w]:
         player.goUp()
-        print(player)
+
 
     elif keys[pygame.K_s]:
         player.goDown()
-        print(player)
+
 
     else:
         player.updateAccel(player.accelX, 0)
 
-
+    if keys[pygame.K_r]:
+        player.posX = 100
+        player.posY = 100
+        player.velX = 0
+        player.velY = 0
+        player.accelX = 0
+        player.accelY = 0
     currentTime = int(round(time.time() * 1000))
     if currentTime - lastUpdateTime > fps:
         lastUpdateTime = currentTime
