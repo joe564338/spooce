@@ -1,12 +1,13 @@
 import sys, pygame
 from Level import Level
 from Player import Player
+from NeutronStar import NeutronStar
 import time
 
 
 pygame.init()
 
-size = width, height = 800, 600
+size = width, height = 1024, 760
 speed = [2, 2]
 black = 0, 0, 0
 
@@ -15,7 +16,11 @@ level = Level(width, height)
 fps = 1000/60
 ball = pygame.image.load("circle.png")
 ballRect = ball.get_rect()
-player = Player(400, 300, ball, ballRect)
+nsimg = pygame.image.load("neutronstarcircle.png")
+nsRect = nsimg.get_rect()
+player = Player(100, 100, ball, ballRect)
+neutronStar1 = NeutronStar(512, 380, nsimg, nsRect)
+level.addObj(neutronStar1)
 level.addObj(player)
 player.imgRect.center = (player.posX, player.posY)
 for obj in level.objects:
@@ -57,5 +62,5 @@ while 1:
 
     screen.fill(black)
     for obj in level.objects:
-        screen.blit(obj.img, (player.posX- player.radius, player.posY- player.radius))
+        screen.blit(obj.img, (obj.posX- obj.radius, obj.posY- obj.radius))
     pygame.display.flip()
