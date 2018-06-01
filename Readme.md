@@ -4,5 +4,6 @@ So currently im just figuring out how I can design a game around gravity of mass
 "neutron stars" that people can add to the game world that exert gravity on the "player". Values can be tweaked easily
 just go in the files. I know graphics are super simplified feel free to replace them with whatever.
 Just add your game objects to the level i.e player and neutron stars... I will think of other things to add soon. And if
-you can come up with more efficient code please let me know.  Yeah so go nuts. Currently working on how I can get a
-scrollable camera.
+you can come up with more efficient code please let me know.  Yeah so go nuts.
+Camera is done.
+Probably next I will look how to do a map on the UI so you can have a better heads up what is around you
