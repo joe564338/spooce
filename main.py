@@ -3,6 +3,7 @@ from Level import Level
 from Player import Player
 from NeutronStar import NeutronStar
 from Camera import Camera
+from Map import Map
 import time
 
 
@@ -26,6 +27,7 @@ level.addObj(neutronStar1)
 level.addObj(neutronStar2)
 level.addObj(player)
 camera = Camera(player.posX, player.posY)
+map = Map(width, height)
 player.imgRect.center = (player.posX, player.posY)
 for obj in level.objects:
     print(obj.posX, obj.posY)
@@ -69,10 +71,11 @@ while 1:
     currentTime = int(round(time.time() * 1000))
     if currentTime - lastUpdateTime > fps:
         lastUpdateTime = currentTime
-        camera.adjustCamera(player.posX - 400, player.posY - 400)
+        camera.adjustCamera(player.posX - width/2, player.posY - height/2)
         level.update()
 
     screen.fill(black)
     for obj in level.objects:
         screen.blit(obj.img, (obj.posX- obj.radius - camera.posX, obj.posY- obj.radius - camera.posY))
+    pygame.draw.lines(screen, map.lineColor, False, map.mapBox)
     pygame.display.flip()

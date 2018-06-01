@@ -6,4 +6,4 @@ just go in the files. I know graphics are super simplified feel free to replace 
 Just add your game objects to the level i.e player and neutron stars... I will think of other things to add soon. And if
 you can come up with more efficient code please let me know.  Yeah so go nuts.
 Camera is done.
-Probably next I will look how to do a map on the UI so you can have a better heads up what is around you
+Probably next I will look how to do a map on the UI so you can have a better heads up what is around you.
