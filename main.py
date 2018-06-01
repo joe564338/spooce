@@ -2,6 +2,7 @@ import sys, pygame
 from Level import Level
 from Player import Player
 from NeutronStar import NeutronStar
+from Camera import Camera
 import time
 
 
@@ -12,7 +13,7 @@ speed = [2, 2]
 black = 0, 0, 0
 
 screen = pygame.display.set_mode(size)
-level = Level(width, height)
+level = Level(4000, 4000)
 fps = 1000/60
 ball = pygame.image.load("circle.png")
 ballRect = ball.get_rect()
@@ -20,15 +21,17 @@ nsimg = pygame.image.load("neutronstarcircle.png")
 nsRect = nsimg.get_rect()
 player = Player(100, 100, ball, ballRect)
 neutronStar1 = NeutronStar(512, 380, nsimg, nsRect)
-neutronStar2 = NeutronStar(200, 700, nsimg, nsRect)
+neutronStar2 = NeutronStar(2000, 700, nsimg, nsRect)
 level.addObj(neutronStar1)
 level.addObj(neutronStar2)
 level.addObj(player)
+camera = Camera(player.posX, player.posY)
 player.imgRect.center = (player.posX, player.posY)
 for obj in level.objects:
     print(obj.posX, obj.posY)
 lastUpdateTime =  int(round(time.time() * 1000))
 while 1:
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT: sys.exit()
 
@@ -66,9 +69,10 @@ while 1:
     currentTime = int(round(time.time() * 1000))
     if currentTime - lastUpdateTime > fps:
         lastUpdateTime = currentTime
+        camera.adjustCamera(player.posX - 400, player.posY - 400)
         level.update()
 
     screen.fill(black)
     for obj in level.objects:
-        screen.blit(obj.img, (obj.posX- obj.radius, obj.posY- obj.radius))
+        screen.blit(obj.img, (obj.posX- obj.radius - camera.posX, obj.posY- obj.radius - camera.posY))
     pygame.display.flip()
