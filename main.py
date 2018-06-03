@@ -32,6 +32,8 @@ player.imgRect.center = (player.posX, player.posY)
 for obj in level.objects:
     print(obj.posX, obj.posY)
 lastUpdateTime =  int(round(time.time() * 1000))
+mapPlayerColor = 255, 0 , 0
+mapNeutronStarColor = 198, 253, 255
 while 1:
 
     for event in pygame.event.get():
@@ -85,5 +87,10 @@ while 1:
     for i in range(len(map.verticalGridLines)):
         pygame.draw.line(screen, map.lineColor, map.verticalGridLines[i][0], map.verticalGridLines[i][1])
         pygame.draw.line(screen, map.lineColor, map.horizontalGridLines[i][0], map.horizontalGridLines[i][1])
+    for obj in map.mapObjects:
+        if obj.id == "player":
+            pygame.draw.circle(screen, mapPlayerColor,(obj.posX, obj.posY), 4)
+        if obj.id == "neutron star":
+            pygame.draw.circle(screen, mapNeutronStarColor, (obj.posX, obj.posY), 3)
 
     pygame.display.flip()
