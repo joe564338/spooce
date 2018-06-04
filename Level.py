@@ -10,9 +10,19 @@ class Level:
     def addObj(self, obj):
         self.objects.append(obj)
 
-    def update(self):
+    def update(self, mouseX, mouseY):
         movingObjs = list()
         for obj in self.objects:
+            if obj.id == "player":
+                if obj.laserOn:
+                    for obj2 in self.objects:
+                        if obj2.id == "asteroid":
+                            if abs(mouseX - obj2.posX) < obj2.radius and abs(mouseY - obj2.posY) < obj2.radius:
+                                obj2.hp -= obj.laserDamage
+                                if obj2.hp == 0:
+                                    self.objects.remove(obj2)
+                                break
+
             if obj.velX != 0 or obj.velY != 0 or obj.accelX != 0 or obj.accelY != 0:
                 movingObjs.append(obj)
         for obj in movingObjs:

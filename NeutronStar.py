@@ -16,7 +16,7 @@ class NeutronStar(GameObject):
         dist = self.getDist(obj)
         reductionFactor = 3.5
         mag = (self.mass/dist)/reductionFactor
-        maxDist = 400
+        maxDist = 425
         if dist < maxDist:
             accDeltaX = mag * (self.posX - obj.posX)/dist
             accDeltaY = mag * (self.posY - obj.posY)/dist

@@ -25,7 +25,7 @@ class Map:
         self.playerPosY = playerPosY
         scaleX = playerPosX/10
         scaleY = playerPosY/10
-        self.mapObjects = list()
+        self.mapObjects.clear()
         for obj in self.level.objects:
             if obj.id == "player":
                 self.mapObjects.append(GameObject(0,0, self.windowSizeX - 100, self.windowSizeY - 100, 0, "player", None, None))
@@ -36,6 +36,13 @@ class Map:
                     mapObjPosX = int(self.windowSizeX - (100 - distX/self.mapScale))
                     mapObjPosY = int(self.windowSizeY - (100 - distY/self.mapScale))
                     self.mapObjects.append(GameObject(0, 0, mapObjPosX, mapObjPosY,0, "neutron star", None, None))
+            elif obj.id == "asteroid":
+                distX = obj.posX - playerPosX
+                distY = obj.posY - playerPosY
+                if abs(distX) < self.mapCoverage / 2 and abs(distY) < self.mapCoverage / 2:
+                    mapObjPosX = int(self.windowSizeX - (100 - distX / self.mapScale))
+                    mapObjPosY = int(self.windowSizeY - (100 - distY / self.mapScale))
+                    self.mapObjects.append(GameObject(0, 0, mapObjPosX, mapObjPosY, 0, "asteroid", None, None))
 
         for i in range(len(self.horizontalGridLines)):
             for j in range(len(self.horizontalGridLines[i])):
