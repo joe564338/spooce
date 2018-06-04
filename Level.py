@@ -19,7 +19,7 @@ class Level:
                         if obj2.id == "asteroid":
                             if abs(mouseX - obj2.posX) < obj2.radius and abs(mouseY - obj2.posY) < obj2.radius:
                                 obj2.hp -= obj.laserDamage
-                                if obj2.hp == 0:
+                                if obj2.hp < 0:
                                     self.objects.remove(obj2)
                                 break
 
