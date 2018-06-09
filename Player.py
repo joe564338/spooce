@@ -3,7 +3,7 @@ from GameObject import GameObject
 
 class Player(GameObject):
     playerMass = 100
-    playerMaxSpeed = 16
+    playerMaxSpeed = 12
     playerRadius = 38
     playerAccel = 2
     laserOn = False
