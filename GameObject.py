@@ -18,7 +18,8 @@ class GameObject:
         self.posY += self.velY
         self.velX += self.accelX
         self.velY += self.accelY
-        self.imgRect.move([self.velX, self.velY])
+        if self.imgRect != None:
+            self.imgRect.move([self.velX, self.velY])
         if self.velX >= self.maxSpeed:
             self.velX = self.maxSpeed
         elif self.velX <= -self.maxSpeed:
